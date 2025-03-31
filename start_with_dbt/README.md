@@ -7,7 +7,7 @@ dbt - data build tool, is designed to simplify the management of data warehouses
     dbt allows you to write modular SQL code to define transformations.
     Each SQL file represents a model that dbt compiles and runs inside your data warehouse.
 
-2. Dependency Management & DAG Structure
+2. Dependency Management & DAG Structure:
     automatically create a DAG of transformations to ensure the models run in the correct order based on dependencies
 
 3. 
