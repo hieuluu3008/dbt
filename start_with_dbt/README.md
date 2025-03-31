@@ -31,8 +31,6 @@ supports CI/CD pipelines, ensuring changes are tested before deployment.
 works with major cloud data warehouses: Snowflake, BigQuery, Postgres, Databricks, ...
 
 # 2. Set-up dbt
-### Addition (when you work with snowflake)
-
 ### Install
 Run the following commands to install dbt:
 
@@ -40,5 +38,33 @@ Run the following commands to install dbt:
 pip install dbt-core
 pip install dbt-snowflake --when you work with Snowflake
 pip install dbt-postgres --when you work with Postgres
+```
+### Set-up Snowflake (when you work with snowflake)
+Visit the link: https://www.snowflake.com/en/ and create an new account (if you have not) <br>
+*How to create an Snowflake account: https://www.youtube.com/watch?v=VIJH7TZXkaA&t=434s* <br>
+Menu --> Projects --> Worksheets --> Create SQL Worksheet <br>
+and run the following code by step:
+```sql
+use role accountadmin;
+
+create warehouse dbt_wh with warehouse_size='x-small';
+create database if not exists dbt_db;
+create role if not exists dbt_role;
+
+show grants on warehouse dbt_wh;
+
+grant usage on warehouse dbt_wh to role dbt_role;
+grant role dbt_role to user hieuluu298;
+grant all on database dbt_db to role dbt_role;
+
+use role dbt_role;
+
+create schema dbt_db.dbt_schema;
+
+use role accountadmin;
+
+drop warehouse if exists dbt_wh;
+drop database if exists dbt_db;
+drop role if exists dbt_role;
 ```
 
