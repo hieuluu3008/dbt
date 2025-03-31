@@ -54,7 +54,7 @@ create role if not exists dbt_role;
 show grants on warehouse dbt_wh;
 
 grant usage on warehouse dbt_wh to role dbt_role;
-grant role dbt_role to user hieuluu298;
+grant role dbt_role to user 'input_user_name';
 grant all on database dbt_db to role dbt_role;
 
 use role dbt_role;
@@ -67,4 +67,18 @@ drop warehouse if exists dbt_wh;
 drop database if exists dbt_db;
 drop role if exists dbt_role;
 ```
+This will create a new schema for objects in dbt project
 
+### Run dbt
+Following the step:
+* Run `dbt init` 
+* Enter project name:
+* Select database to use:
+* Enter user account: `https://<account_identifier>.snowflakecomputing.com`
+* Select the authen option (password=1):
+* Enter the password:
+* Enter the role you have crate:
+* Enter the warehouse you have crate:
+* Enter the database you have crate:
+* Enter the schema you have crate:
+* Enter the threads: `number` ([Go to Another Page](threads.md))
