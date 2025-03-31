@@ -1,4 +1,4 @@
-# 1. Introduction to dbt
+# I. Introduction to dbt
 ### Definition
 dbt - data build tool, is designed to simplify the management of data warehouses and transform the data within(ELT - ETL processes). It allows for easy transition between data warehouse types, such as Snowflake, BigQuery, Postgres. dbt also provides the ability to use SQL across teams of multiple users, simplifying interaction. In addition, dbt translates between SQL dialects as appropriate to connect to different data sources and warehouses.
 
@@ -30,7 +30,7 @@ supports CI/CD pipelines, ensuring changes are tested before deployment.
 #### 8.Compatibility with Multiple Data Warehouses
 works with major cloud data warehouses: Snowflake, BigQuery, Postgres, Databricks, ...
 
-# 2. Set-up dbt
+# II. Set-up dbt
 ### Install
 Run the following commands to install dbt:
 
@@ -78,7 +78,7 @@ Following the step:
 * Enter user account: input account_identifier <br>
 from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowflakecomputing.com`
 * Select the authen option (password=1):
-* Enter the password:
+* Enter the user password:
 * Enter the role you have crate:
 * Enter the warehouse you have crate:
 * Enter the database you have crate:
@@ -88,4 +88,20 @@ from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowf
 * Run `cd data_pipeline` to create a new folder for dbt project
 * Run `code .` to access Visual Code Studio
 
-# 3. Create & develop dbt
+# III. dbt Features
+### dbt Models
+a SQL file that defines a transformation in your data warehouse. When you run dbt, it compiles these models into SQL queries and executes them to create views or tables. <br>
+
+##### How to run a dbt model?
+```bash
+dbt run -select model_sql_file
+```
+or
+```bash
+dbt run -s model_sql_file
+```
+##### Configuration in dbt Model:
+
+
+
+

@@ -3,9 +3,9 @@ threads define the number of parallel database connections that dbt can use when
 control number of queries can run in the same time. <br>
 More threads allow dbt to execute multiple queries simultaneously, improving performance.
 ### Where to find?
-threads is specified in the dbt profile file (profiles.yml), typically found in: <br>
-Windows: %USERPROFILE%\.dbt\profiles.yml <br>
-Mac/Linux: ~/.dbt/profiles.yml
+threads is specified in the dbt profile file (`profiles.yml`), typically found in: <br>
+Windows: `%USERPROFILE%\.dbt\profiles.yml` <br>
+Mac/Linux: `~/.dbt/profiles.yml`
 ### How Threads Affect Performance
 * More threads → Faster execution (up to the limit your database can handle).
 * Too many threads → Potentially slower execution due to resource contention.<br>
