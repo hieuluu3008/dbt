@@ -10,9 +10,9 @@ Mac/Linux: ~/.dbt/profiles.yml
 * More threads → Faster execution (up to the limit your database can handle).
 * Too many threads → Potentially slower execution due to resource contention.
 Optimal Thread Settings:
-Database    |	Recommended threads
-------------|---------------------------------------
-PostgreSQL	|    4-8
-Snowflake   |    4-10 (depends on warehouse size)
-BigQuery	|    8-16
-Redshift	|    4-8
+|Database    |	Recommended threads               |
+|------------|------------------------------------|
+|PostgreSQL	 |    4-8                             |
+|Snowflake   |    4-10 (depends on warehouse size)|
+|BigQuery	 |    8-16                            |
+|Redshift	 |    4-8                             |
