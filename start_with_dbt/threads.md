@@ -9,7 +9,7 @@ Mac/Linux: ~/.dbt/profiles.yml
 ### How threads Affects Performance
 * More threads → Faster execution (up to the limit your database can handle).
 * Too many threads → Potentially slower execution due to resource contention.
-Optimal Thread Settings:
+Optimal Thread Settings: <br>
 |Database    |	Recommended threads               |
 |------------|------------------------------------|
 |PostgreSQL	 |    4-8                             |
