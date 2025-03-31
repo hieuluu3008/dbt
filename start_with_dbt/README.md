@@ -4,7 +4,7 @@ dbt - data build tool, is designed to simplify the management of data warehouses
 
 ### Features
 #### 1. SQL-Based Data Transformation:
-dbt allows you to write modular SQL code to define transformations. 
+dbt allows you to write modular SQL code to define transformations. <br>
 Each SQL file represents a model that dbt compiles and runs inside your data warehouse.
 
 ##### 2. Dependency Management & DAG Structure:
