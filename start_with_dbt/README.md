@@ -89,7 +89,7 @@ from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowf
 * Run `code .` to access Visual Code Studio
 
 # III. dbt Features
-### dbt Models
+### Models
 a SQL file that defines a transformation in your data warehouse. When you run dbt, it compiles these models into SQL queries and executes them to create views or tables. <br>
 Ex:
 ```sql
@@ -117,7 +117,7 @@ dbt run -s model_sql_file
 #### Configuration in dbt Model:
 Control how models are built by [materialized](definition/materialized.md)
 
-### dbt Seed
+### Seed
 a CSV file can be loaded into a data warehouse by `dbt seed` command. This is useful for:
 * Loading reference/static data (e.g., country codes, product categories).
 * Creating small lookup tables (e.g., user roles, mappings).
@@ -130,7 +130,48 @@ Place a CSV files inside `seeds/`folder and run `dbt seed` command to load these
 dbt seed --full-refresh
 ```
 
+### Analyses
+store ad-hoc SQL queries reports, or exploratory analysis that are not intended to be materialized (i.e., they do not create tables or views in the database).<br>
+Usage:
+* Store one-off analytical queries that don’t fit as dbt models.
+* Share SQL reports with team members for review.
+* Use dbt macros and Jinja to write dynamic and reusable queries.
+* Organize queries for business insights, debugging, or testing.
 
+#### How it work?
+Create a .sql file inside `analyses/`folder to store queries and run `dbt compile`
 
+### Tests
+a SQL file that automates data quality checks in dbt project to ensure models are accruate and reliable. These tests validate data integrity, consistency, and business logic before models are used in production.
 
+#### Type of dbt Tests
+1. Generic Tests (Built-in, easy to use)
+can be add directly in model `.yml` file
+```yml
+models:
+  - name: dim_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique ## no duplicate value
+          - not_null ## no missing value
+```
+2. Singular Tests (Advanced, in tests/ folder)
+a SQL file located inside `tests/`folder <br>
+Ex:
+```sql
+SELECT * 
+FROM {{ ref('fct_sales') }}
+WHERE total_revenue < 0  -- Revenue should never be negative
+```
+If this query returns rows, the test fails ❌.
 
+#### How it work?
+You can test all models:
+```bash
+dbt test
+```
+Or test a specific model:
+```bash
+dbt test --select test_sql_file
+```
