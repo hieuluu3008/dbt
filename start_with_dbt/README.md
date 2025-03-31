@@ -81,4 +81,4 @@ Following the step:
 * Enter the warehouse you have crate:
 * Enter the database you have crate:
 * Enter the schema you have crate:
-* Enter the threads: `number` ([Go to Another Page](threads.md))
+* Enter the threads: `number` ([Read threads for more information](definition/threads.md))
