@@ -6,13 +6,16 @@ More threads allow dbt to execute multiple queries simultaneously, improving per
 threads is specified in the dbt profile file (profiles.yml), typically found in: <br>
 Windows: %USERPROFILE%\.dbt\profiles.yml <br>
 Mac/Linux: ~/.dbt/profiles.yml
-### How threads Affects Performance
+### How Threads Affect Performance
 * More threads → Faster execution (up to the limit your database can handle).
-* Too many threads → Potentially slower execution due to resource contention.
-Optimal Thread Settings: <br>
-|Database    |	Recommended threads               |
+* Too many threads → Potentially slower execution due to resource contention.<br>
+
+**Optimal Thread Settings:**  
+
+| Database   | Recommended Threads               |
 |------------|------------------------------------|
-|PostgreSQL	 |    4-8                             |
-|Snowflake   |    4-10 (depends on warehouse size)|
-|BigQuery	 |    8-16                            |
-|Redshift	 |    4-8                             |
+| PostgreSQL | 4-8                               |
+| Snowflake  | 4-10 (depends on warehouse size)  |
+| BigQuery   | 8-16                              |
+| Redshift   | 4-8                               |
+
