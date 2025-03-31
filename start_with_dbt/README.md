@@ -34,8 +34,11 @@ works with major cloud data warehouses: Snowflake, BigQuery, Postgres, Databrick
 ### Addition (when you work with snowflake)
 
 ### Install
-Run the following command:
-    pip install dbt-core
-    pip install dbt-snowflake --when you work with snowflake
-    pip install dbt-postgres --when you work with postgres
+Run the following commands to install dbt:
+
+```bash
+pip install dbt-core
+pip install dbt-snowflake --when you work with Snowflake
+pip install dbt-postgres --when you work with Postgres
+```
 
