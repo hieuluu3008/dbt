@@ -91,7 +91,17 @@ from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowf
 # III. dbt Features
 ### dbt Models
 a SQL file that defines a transformation in your data warehouse. When you run dbt, it compiles these models into SQL queries and executes them to create views or tables. <br>
-
+Ex:
+```sql
+select
+    o_orderkey as orderkey,
+    o_custkey as customer_key,
+    o_orderstatus as status_code,
+    o_totalprice as total_price,
+    o_orderdate as order_date
+from
+    {{ source('tpch','orders')}}
+```
 ##### How to run a dbt model?
 ```bash
 dbt run -select model_sql_file
@@ -101,6 +111,9 @@ or
 dbt run -s model_sql_file
 ```
 ##### Configuration in dbt Model:
+Control how models are built by [materialized](definition/materialized.md)
+
+
 
 
 
