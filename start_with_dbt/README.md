@@ -71,10 +71,12 @@ This will create a new schema for objects in dbt project
 
 ### Run dbt
 Following the step:
+* Open the cmd
 * Run `dbt init` 
-* Enter project name:
-* Select database to use:
-* Enter user account: `https://<account_identifier>.snowflakecomputing.com`
+* Enter project name: 
+* Select database to use: (snowflake)
+* Enter user account: input account_identifier <br>
+from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowflakecomputing.com`
 * Select the authen option (password=1):
 * Enter the password:
 * Enter the role you have crate:
@@ -82,3 +84,8 @@ Following the step:
 * Enter the database you have crate:
 * Enter the schema you have crate:
 * Enter the threads: `number` ([Read threads for more information](definition/threads.md))
+* Run `dbt debug` to validate the connection.
+* Run `cd data_pipeline` to create a new folder for dbt project
+* Run `code .` to access Visual Code Studio
+
+# 3. Create & develop dbt
