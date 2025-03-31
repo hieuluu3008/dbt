@@ -175,3 +175,87 @@ Or test a specific model:
 ```bash
 dbt test --select test_sql_file
 ```
+
+### Dbt Docs (`target/`folder)
+a documentation tool in dbt that helps you generate and explore documentation for your dbt project. It provides an interactive UI where you can:
+* View all models, sources, and tests in a structured way.
+* See relationships between models with a dependency lineage graph.
+* Understand model descriptions, column-level details, and data tests.
+
+#### How to generate documentation?
+Run the following command to generate dbt documentation:
+```bash
+dbt docs generate
+```
+This creates a `target/`folder containing `manifest.json` and `catalog.json`, which store metadata about your dbt project.
+#### How to view doc in a Web UI?
+Start the dbt docs server by running:
+```bash
+dbt docs serve
+```
+This opens an interactive UI in your browser (default: http://localhost:8080).
+
+### Macros
+Store reusable SQL function written in Jinja in `macros/`folder. These macros help automate repetitive SQL logic, making your dbt project more efficient and modular.
+* Avoid Repetitive SQL – Write logic once and reuse it across multiple models.
+* Enhance Readability – Keep models clean by abstracting complex logic.
+* Increase Maintainability – Centralize business rules for easier updates.
+
+Ex:
+```sql
+{% macro get_fiscal_year(date_column) %}
+    CASE 
+        WHEN EXTRACT(MONTH FROM {{ date_column }}) >= 10 
+        THEN EXTRACT(YEAR FROM {{ date_column }}) + 1
+        ELSE EXTRACT(YEAR FROM {{ date_column }})
+    END
+{% endmacro %}
+```
+Using a Marco in a Model
+```sql
+SELECT
+    order_id,
+    order_date,
+    {{ get_fiscal_year('order_date') }} AS fiscal_year
+FROM {{ ref('raw_orders') }}
+```
+#### How it work?
+Once macros are defined, you can run `dbt run` as usual. <br>
+Or test a macro directly using `dbt compile`.
+
+### Packages
+dbt packages are pre-built collections of models, macros, tests, and analyses that you can install and use in your dbt project. These packages help extend dbt’s functionality and reuse existing work, saving time and effort.
+* Use Community-Powered Code – Install ready-made models, macros, and tests.
+* Standardize Best Practices – Leverage well-tested transformations and logic.
+* Extend dbt’s Capabilities – Add extra functions, connectors, or data validation tools.
+
+#### How to use dbt packages?
+1. Define packages in `packages.yml`
+To use a dbt package, declare it in the `packages.yml` file inside your dbt project.<br>
+Ex:
+```yml
+packages:
+  - package: dbt-labs/dbt_utils
+    version: 1.1.0
+  - package: calogica/dbt_expectations
+    version: 0.10.2
+```
+2. Install the packages
+Run `dbt deps` to install the packages into `dbt_packages/`folder
+
+3. Apply to the models.
+Once installed, you can use macros or functions from the package in your dbt models.
+Ex:
+```sql
+SELECT 
+    {{ dbt_utils.safe_cast("customer_id", "string") }} AS customer_id
+FROM {{ ref('stg_customers') }}
+```
+#### Some popular dbt Packages
+|📦 Package	      |💡 Purpose                                                                            |
+|-----------------|---------------------------------------------------------------------------------------|
+|dbt_utils	      | Provides useful macros (e.g., safe type casting, surrogate keys, deduplication).      |
+|dbt_expectations |	Adds advanced data tests (e.g., unique values within groups, null percentage limits). |
+|dbt_artifacts	  | Helps track dbt run history and metadata.                                             |
+|audit_helper	  | Provides macros for data reconciliation and audits.                                   |
+|snowflake_utils  |	Snowflake-specific functions and optimizations.                                       |
