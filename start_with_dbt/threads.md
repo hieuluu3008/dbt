@@ -13,7 +13,7 @@ Mac/Linux: ~/.dbt/profiles.yml
 **Optimal Thread Settings:**  
 
 | Database   | Recommended Threads               |
-|------------|------------------------------------|
+|------------|-----------------------------------|
 | PostgreSQL | 4-8                               |
 | Snowflake  | 4-10 (depends on warehouse size)  |
 | BigQuery   | 8-16                              |
