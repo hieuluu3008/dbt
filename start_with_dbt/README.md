@@ -102,7 +102,11 @@ select
 from
     {{ source('tpch','orders')}}
 ```
-##### How to run a dbt model?
+#### How to run a dbt model?
+```bash
+dbt run
+```
+Or when run a certain model
 ```bash
 dbt run -select model_sql_file
 ```
@@ -110,9 +114,21 @@ or
 ```bash
 dbt run -s model_sql_file
 ```
-##### Configuration in dbt Model:
+#### Configuration in dbt Model:
 Control how models are built by [materialized](definition/materialized.md)
 
+### dbt Seed
+a CSV file can be loaded into a data warehouse by `dbt seed` command. This is useful for:
+* Loading reference/static data (e.g., country codes, product categories).
+* Creating small lookup tables (e.g., user roles, mappings).
+* Simplifying development/testing with sample datasets.
+
+#### How it work?
+Place a CSV files inside `seeds/`folder and run `dbt seed` command to load these CSVs into the database. <br>
+* When need to update or re-seed data
+```bash
+dbt seed --full-refresh
+```
 
 
 
