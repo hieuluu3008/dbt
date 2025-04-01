@@ -26,7 +26,18 @@ FROM {{ ref('stg_orders') }}
 GROUP BY customer_id
 ```
 
-3. Incremental
+3. Ephemeral
+* Not create a table or view.
+* Function like CTE in SQL.
+* Useful for reusable logic that doesn’t need storage.<br>
+```sql
+{{ config(materialized='ephemeral') }}
+
+SELECT order_id, price * 0.9 AS discounted_price
+FROM {{ ref('stg_orders') }}
+```
+
+4. Incremental
 * Runs the query and only updates new/changed rows instead of recreating the whole table.
 * Efficient for large datasets that change over time.<br>
 ```sql
@@ -40,15 +51,4 @@ WHERE order_date >= CURRENT_DATE - INTERVAL '7 days'
   -- Only insert new rows that don’t exist yet
   AND order_id NOT IN (SELECT order_id FROM {{ this }})
 {% endif %}
-```
-
-4. Ephemeral
-* Not create a table or view.
-* Function like CTE in SQL.
-* Useful for reusable logic that doesn’t need storage.<br>
-```sql
-{{ config(materialized='ephemeral') }}
-
-SELECT order_id, price * 0.9 AS discounted_price
-FROM {{ ref('stg_orders') }}
 ```

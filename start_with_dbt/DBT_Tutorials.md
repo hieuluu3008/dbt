@@ -41,7 +41,8 @@ pip install dbt-snowflake ##when you work with Snowflake
 pip install dbt-postgres ##when you work with Postgres
 ```
 ### Set-up Snowflake (when you work with snowflake)
-![Logo của Snowflake](image/snowflake_logo.png)<br>
+![Logo của Snowflake](image/snowflake_logo.png)
+<br>
 Visit the link: https://www.snowflake.com/en/ and create an new account (if you have not) <br>
 *How to create an Snowflake account: https://www.youtube.com/watch?v=VIJH7TZXkaA&t=434s* <br>
 Menu --> Projects --> Worksheets --> Create SQL Worksheet <br>
