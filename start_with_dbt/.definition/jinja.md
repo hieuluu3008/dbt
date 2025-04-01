@@ -77,7 +77,8 @@ In dbt, `ref()` and `source()` are used to reference different types of tables i
 | ref('model_name')                   | Refers to a model inside project     | When referencing transformed dbt models  |
 | source('source_name','table_name')  | Refers to an external source table   | When pull raw data from the database     |
 
-1. `ref()` – Referencing dbt Models <br>
+1. `ref()` – Referencing dbt Models
+
 📌 Used to reference models that dbt has already built.
 * Ensures dependencies are properly managed.
 * dbt automatically resolves schema names.
@@ -87,7 +88,8 @@ SELECT * FROM {{ ref('stg_customers') }}
 ```
 This ensures that dbt pulls the latest version of stg_customers when running this query.
 
-2. `source()` – Referencing Raw Data Sources <br>
+2. `source()` – Referencing Raw Data Sources
+
 📌 Used to reference raw tables that dbt does not manage.
 * Helps document where data comes from (source tracking).
 * Ensures dbt only reads approved source tables.
