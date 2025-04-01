@@ -95,6 +95,13 @@ from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowf
 * Run `code .` to access Visual Code Studio
 
 # III. dbt Features
+### 0. dbt_project.yml
+The `dbt_project.yml` file is the main configuration file for a dbt project. It defines:
+* **Project Name & Paths** – Where dbt should look for models, tests, snapshots, and more.
+* **Database & Schema Settings** – How dbt organizes tables in your warehouse.
+* **Materializations & Configs** – Default settings for models (tables, views, incremental).
+* **Custom Variables & Metadata** – Store reusable settings for your project.
+
 ### 1. Models
 a SQL file that defines a transformation in your data warehouse. When you run dbt, it compiles these models into SQL queries and executes them to create views or tables. <br>
 Ex:
