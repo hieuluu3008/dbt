@@ -257,5 +257,65 @@ FROM {{ ref('stg_customers') }}
 |dbt_utils	      | Provides useful macros (e.g., safe type casting, surrogate keys, deduplication).      |
 |dbt_expectations |	Adds advanced data tests (e.g., unique values within groups, null percentage limits). |
 |dbt_artifacts	  | Helps track dbt run history and metadata.                                             |
-|audit_helper	  | Provides macros for data reconciliation and audits.                                   |
+|audit_helper	    | Provides macros for data reconciliation and audits.                                   |
 |snowflake_utils  |	Snowflake-specific functions and optimizations.                                       |
+
+### Snapshots
+A SQL file located in `snapshots/`folder is used for tracking historical changes in a dataset over time. Snapshots allow you to capture and store changes to records instead of just seeing the latest state.
+* Track Data Changes Over Time – See when records were created, updated, or deleted.
+* Enable Slowly Changing Dimensions (SCDs) – Store history for better analytics.
+* Audit and Debug Data – Keep a record of changes for compliance and troubleshooting. <br>
+
+#### Snapshot Strategies
+|Strategy     | When to use             | How it works                          |
+|-------------|-------------------------|---------------------------------------|
+|`timestamp`  |Has `updated_at` column  |Tracks changes based on the timestamp  |
+|`check`      |No `updated_at` column   |Compares all columns to detect changes |
+
+**`timestamp`**
+```sql
+{% snapshot customer_snapshot %}
+
+{{
+    config(
+        target_schema='snapshots',
+        unique_key='customer_id',
+        strategy='timestamp',
+        updated_at='updated_at'
+    )
+}}
+
+SELECT * FROM {{ source('raw_data', 'customers') }}
+
+{% endsnapshot %}
+```
+
+**`check`**
+```sql
+{% snapshot customer %}
+
+{{
+    config(
+      target_schema='snapshots',
+      unique_key='customer_id',
+      strategy='check',
+      check_cols=['email','address'],
+      invalidate_hard_deletes=True
+    )
+}}
+
+select * from {{ ref('customer_tb') }}
+
+{% endsnapshot %}
+```
+#### How it work?
+* dbt takes a "snapshot" of a source table and stores historical versions of records.
+* It checks for changes (updates, deletions, new records) in the source table.
+* When a change is detected, dbt adds a new row in the snapshot table instead of replacing old data.
+* This enables slowly changing dimensions (SCDs), meaning you can track changes over time.<br>
+After defining a snapshot, run:
+```bash
+dbt snapshot
+```
+✔ dbt will create a new table in the `snapshots` schema and store historical changes.
+
