@@ -1,4 +1,5 @@
 # I. Introduction to dbt
+![Logo của dbt](https://docs.getdbt.com/img/dbt-logo.svg)
 ### Definition
 dbt - data build tool, is designed to simplify the management of data warehouses and transform the data within(ELT - ETL processes). It allows for easy transition between data warehouse types, such as Snowflake, BigQuery, Postgres. dbt also provides the ability to use SQL across teams of multiple users, simplifying interaction. In addition, dbt translates between SQL dialects as appropriate to connect to different data sources and warehouses.
 
@@ -72,9 +73,11 @@ This will create a new schema for objects in dbt project
 ### Run dbt
 Following the step:<br>
 Before init first dbt project
-* Open the cmd
-* Run `mkdir $home\.dbt` or navigate to home dir by `%USERPROFILE%` to create `.dbt`/folder (the folder contains [profile.yml](definition/profile_yml.md))
-* Run `dbt init` 
+* Open cmd
+* Run `mkdir $home\.dbt` or navigate to home dir by `%USERPROFILE%` to create `.dbt`/folder (the folder contains [profile.yml](definition/profile_yml.md))<br>
+Create first dbt project
+* Open cmd
+* Run `dbt init` command
 * Enter project name: 
 * Select database to use: (snowflake)
 * Enter user account: input account_identifier <br>
