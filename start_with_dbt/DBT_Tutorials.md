@@ -123,7 +123,7 @@ dbt run -s model_sql_file
 #### Configuration in dbt Model:
 Control how models are built by [materialized](definition/materialized.md)
 
-### 2.Seed
+### 2. Seed
 a CSV file can be loaded into a data warehouse by `dbt seed` command. This is useful for:
 * Loading reference/static data (e.g., country codes, product categories).
 * Creating small lookup tables (e.g., user roles, mappings).
