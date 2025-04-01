@@ -101,6 +101,39 @@ The `dbt_project.yml` file is the main configuration file for a dbt project. It 
 * **Database & Schema Settings** – How dbt organizes tables in your warehouse.
 * **Materializations & Configs** – Default settings for models (tables, views, incremental).
 * **Custom Variables & Metadata** – Store reusable settings for your project.
+```yml
+name: 'data_pipeline'
+version: '1.0.0'
+
+profile: 'data_pipeline' # This setting configures which "profile" dbt uses for this project.
+
+# These configurations specify where dbt should look for different types of files.
+# You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+models:
+  data_pipeline:
+    # Config indicated by + and applies to all files under models/example/
+    staging:
+      +materialized: view
+      snowflake_warehouse: dbt_wh
+    marts:
+      +materialized: table
+      snowflake_warehouse: dbt_wh
+```
+
 
 ### 1. Models
 a SQL file that defines a transformation in your data warehouse. When you run dbt, it compiles these models into SQL queries and executes them to create views or tables. <br>
