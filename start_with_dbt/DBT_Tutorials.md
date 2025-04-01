@@ -70,8 +70,10 @@ drop role if exists dbt_role;
 This will create a new schema for objects in dbt project
 
 ### Run dbt
-Following the step:
+Following the step:<br>
+Before init first dbt project
 * Open the cmd
+* Run `mkdir $home\.dbt` or navigate to home dir by `%USERPROFILE%` to create `.dbt`/folder (the folder contains [profile.yml](definition/profile_yml.md))
 * Run `dbt init` 
 * Enter project name: 
 * Select database to use: (snowflake)
