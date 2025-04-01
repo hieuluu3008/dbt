@@ -133,7 +133,8 @@ models:
       +materialized: table
       snowflake_warehouse: dbt_wh
 ```
-
+✔ This configures a project named `data_pipeline`, setting staging models as views and marts as tables.<br>
+Get more information in [dbt_project_yml](definition/dbt_project_yml.md)
 
 ### 1. Models
 a SQL file that defines a transformation in your data warehouse. When you run dbt, it compiles these models into SQL queries and executes them to create views or tables. <br>
@@ -365,3 +366,5 @@ dbt snapshot
 ```
 ✔ dbt will create a new table in the `snapshots` schema and store historical changes.
 
+### Addition
+#### .gitignore
