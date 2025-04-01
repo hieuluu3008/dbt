@@ -76,11 +76,8 @@ This will create a new schema for objects in dbt project
 ### Run dbt
 
 Following the step:<br>
-Before init first dbt project
 * Open cmd
-* Run `mkdir $home\.dbt` or navigate to home dir by `%USERPROFILE%` to create `.dbt`/folder (the folder contains [profile.yml](definition/profile_yml.md))<br>
-Create first dbt project
-* Open cmd
+* Run `mkdir $home\.dbt` or navigate to home dir by `%USERPROFILE%` to create `.dbt`/folder (the folder contains [profile.yml](definition/profile_yml.md))
 * Run `dbt init` command
 * Enter project name: 
 * Select database to use: (snowflake)
@@ -98,7 +95,7 @@ from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowf
 * Run `code .` to access Visual Code Studio
 
 # III. dbt Features
-### Models
+### 1. Models
 a SQL file that defines a transformation in your data warehouse. When you run dbt, it compiles these models into SQL queries and executes them to create views or tables. <br>
 Ex:
 ```sql
@@ -126,7 +123,7 @@ dbt run -s model_sql_file
 #### Configuration in dbt Model:
 Control how models are built by [materialized](definition/materialized.md)
 
-### Seed
+### 2.Seed
 a CSV file can be loaded into a data warehouse by `dbt seed` command. This is useful for:
 * Loading reference/static data (e.g., country codes, product categories).
 * Creating small lookup tables (e.g., user roles, mappings).
@@ -139,7 +136,7 @@ Place a CSV files inside `seeds/`folder and run `dbt seed` command to load these
 dbt seed --full-refresh
 ```
 
-### Analyses
+### 3. Analyses
 store ad-hoc SQL queries reports, or exploratory analysis that are not intended to be materialized (i.e., they do not create tables or views in the database).<br>
 Usage:
 * Store one-off analytical queries that don’t fit as dbt models.
@@ -150,7 +147,7 @@ Usage:
 #### How it work?
 Create a .sql file inside `analyses/`folder to store queries and run `dbt compile`
 
-### Tests
+### 4. Tests
 a SQL file that automates data quality checks in dbt project to ensure models are accruate and reliable. These tests validate data integrity, consistency, and business logic before models are used in production.
 
 #### Type of dbt Tests
@@ -185,7 +182,7 @@ Or test a specific model:
 dbt test --select test_sql_file
 ```
 
-### Dbt Docs (`target/`folder)
+### 5. Dbt Docs (`target/`folder)
 a documentation tool in dbt that helps you generate and explore documentation for your dbt project. It provides an interactive UI where you can:
 * View all models, sources, and tests in a structured way.
 * See relationships between models with a dependency lineage graph.
@@ -204,7 +201,7 @@ dbt docs serve
 ```
 This opens an interactive UI in your browser (default: http://localhost:8080).
 
-### Macros
+### 6. Macros
 Store reusable SQL function written in Jinja in `macros/`folder. These macros help automate repetitive SQL logic, making your dbt project more efficient and modular.
 * Avoid Repetitive SQL – Write logic once and reuse it across multiple models.
 * Enhance Readability – Keep models clean by abstracting complex logic.
@@ -232,7 +229,7 @@ FROM {{ ref('raw_orders') }}
 Once macros are defined, you can run `dbt run` as usual. <br>
 Or test a macro directly using `dbt compile`.
 
-### Packages
+### 7. Packages
 dbt packages are pre-built collections of models, macros, tests, and analyses that you can install and use in your dbt project. These packages help extend dbt’s functionality and reuse existing work, saving time and effort.
 * Use Community-Powered Code – Install ready-made models, macros, and tests.
 * Standardize Best Practices – Leverage well-tested transformations and logic.
@@ -269,7 +266,7 @@ FROM {{ ref('stg_customers') }}
 |audit_helper	    | Provides macros for data reconciliation and audits.                                   |
 |snowflake_utils  |	Snowflake-specific functions and optimizations.                                       |
 
-### Snapshots
+### 8. Snapshots
 A SQL file located in `snapshots/`folder is used for tracking historical changes in a dataset over time. Snapshots allow you to capture and store changes to records instead of just seeing the latest state.
 * Track Data Changes Over Time – See when records were created, updated, or deleted.
 * Enable Slowly Changing Dimensions (SCDs) – Store history for better analytics.
