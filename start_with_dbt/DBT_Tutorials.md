@@ -324,7 +324,7 @@ A SQL file located in `snapshots/`folder is used for tracking historical changes
 |`timestamp`  |Has `updated_at` column  |Tracks changes based on the timestamp  |
 |`check`      |No `updated_at` column   |Compares all columns to detect changes |
 
-**`timestamp`**
+* **`timestamp`**
 ```sql
 {% snapshot customer_snapshot %}
 
@@ -342,7 +342,7 @@ SELECT * FROM {{ source('raw_data', 'customers') }}
 {% endsnapshot %}
 ```
 
-**`check`**
+* **`check`**
 ```sql
 {% snapshot customer %}
 
