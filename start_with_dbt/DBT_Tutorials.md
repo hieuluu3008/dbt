@@ -85,10 +85,10 @@ Following the step:<br>
 from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowflakecomputing.com`
 * Select the authen option (password=1):
 * Enter the user password:
-* Enter the role you have crate:
-* Enter the warehouse you have crate:
-* Enter the database you have crate:
-* Enter the schema you have crate:
+* Enter the role you have create:
+* Enter the warehouse you have create:
+* Enter the database you have create:
+* Enter the schema you have create:
 * Enter the threads: `number` ([Read threads for more information](definition/threads.md))
 * Run `dbt debug` to validate the connection.
 * Run `cd data_pipeline` to create a new folder for dbt project
