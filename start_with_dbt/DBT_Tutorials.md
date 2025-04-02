@@ -193,6 +193,7 @@ a SQL file that automates data quality checks in dbt project to ensure models ar
 
 #### Type of dbt Tests
 1. Generic Tests (Built-in, easy to use)
+
 can be add directly in model `.yml` file
 ```yml
 models:
@@ -204,6 +205,7 @@ models:
           - not_null ## no missing value
 ```
 2. Singular Tests (Advanced, in tests/ folder)
+
 a SQL file located inside `tests/`folder <br>
 Ex:
 ```sql
@@ -278,6 +280,7 @@ dbt packages are pre-built collections of models, macros, tests, and analyses th
 
 #### How to use dbt packages?
 1. Define packages in `packages.yml`
+
 To use a dbt package, declare it in the `packages.yml` file inside your dbt project.<br>
 Ex:
 ```yml
@@ -288,9 +291,11 @@ packages:
     version: 0.10.2
 ```
 2. Install the packages
+
 Run `dbt deps` to install the packages into `dbt_packages/`folder
 
 3. Apply to the models.
+
 Once installed, you can use macros or functions from the package in your dbt models.
 Ex:
 ```sql
