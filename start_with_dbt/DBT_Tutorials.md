@@ -96,7 +96,7 @@ from Menu --> Admin --> Accounts --> Locator `https://<account_identifier>.snowf
 
 # III. dbt Features
 ### 0. dbt_project.yml
-The `dbt_project.yml` file is the main configuration file for a dbt project. It defines:
+The `dbt_project.yml` file is the main configuration file for a dbt project written in YAML format. It defines:
 * **Project Name & Paths** – Where dbt should look for models, tests, snapshots, and more.
 * **Database & Schema Settings** – How dbt organizes tables in your warehouse.
 * **Materializations & Configs** – Default settings for models (tables, views, incremental).
