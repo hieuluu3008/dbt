@@ -38,7 +38,8 @@ FROM {{ ref('stg_orders') }}
 ```
 
 4. Incremental
-* Runs the query and only updates new/changed rows instead of recreating the whole table.
+* The first time a model is run, the table is built by transforming all rows of source data.
+* On subsequent runs, dbt transforms only the rows in your source data that you tell dbt to filter for, inserting them into the target table which is the table that has already been built.
 * Efficient for large datasets that change over time.<br>
 ```sql
 {{ config(materialized='incremental', unique_key='order_id') }}
