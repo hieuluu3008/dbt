@@ -162,7 +162,7 @@ or
 dbt run -s model_sql_file
 ```
 #### Configuration in dbt Model:
-Control how models are built by [materialized](definition/materialized.md)
+Control how models are built by [materialized](definition/materialized & config/materialized.md)
 
 ### 2. Seed
 a CSV file can be loaded into a data warehouse by `dbt seed` command. This is useful for:

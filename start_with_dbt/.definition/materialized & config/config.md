@@ -131,9 +131,12 @@ select * from raw_orders
 `persist_docs` Enables writing `description` metadata of models and columns into the database for documentation purposes.
 ```sql
 {{ 
-    config(persist_docs={"relation": true -- persist description on the model/table/view
-                        , "columns": true -- persist description on the columns
-    }) }}
+    config(persist_docs=
+                {"relation": true -- persist description on the model/table/view
+                , "columns": true -- persist description on the columns
+                        }
+            )
+    }}
 {{ doc("orders_model") }}
 select
 order_id, -- {{ doc("order_id_column") }}

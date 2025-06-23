@@ -1,5 +1,5 @@
 # Materialized
-refers to **how a model's SQL query is executed and stored** in the database. Different materializations control whether the query runs dynamically or saves data for better performance.
+Different materializations control whether the query runs dynamically or saves data for better performance.
 * Optimize Query Performance – Store data instead of recalculating it every time.
 * Reduce Compute Costs – Avoid running expensive transformations repeatedly.
 * Control Data Persistence – Choose whether to store results as tables, views, or incremental updates.
